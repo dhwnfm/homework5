@@ -10,4 +10,7 @@
     <div class="box-data">
      ユーザ名 <%= @user.name %>
     </div>
+    
+    <%= link_to "プロフィール登録", new_mypage_path, method: :get %>
+    <%= link_to "プロフィール確認", mypage_path(current_user.id), method: :get %> 
 </div>    

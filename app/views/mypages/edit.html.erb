@@ -1,0 +1,26 @@
+<h3>mypage編集</h3>
+ <%= render "shared/error", obj: @mypage %>
+ 
+    <%= form_for @mypage do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :画像 %></th>
+          <td><%= f.file_field :img, class: "image" %></td>
+        </tr>  
+        <tr>
+          <th><%= f.label :username ,"名前" %></th>
+          <td><%= f.text_field :username %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :introduction ,"自己紹介" %></th>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+      </table>    
+      <div>
+        <ul>
+          <li><%= f.submit "編集を完了する" %></li>
+          <li><%= link_to "アカウント設定に戻る", user_path(current_user.id), method: :get %></li>
+        </ul>
+      </div>
+    <% end %>
+     
