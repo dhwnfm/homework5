@@ -1,0 +1,39 @@
+<h2>登録済みルーム一覧</h2>
+    <% if flash.notice %>
+      <p class="notice"><%= flash.notice %></p>
+    <% end %>
+
+ <table>
+      <thead>
+        <tr>
+          <th>user</th>
+          <th>ルーム写真</th>
+          <th>ルーム名</th>
+          <th>ルーム紹介</th>
+          <th>料金</th>
+          <th>作成日</th>
+          <th>x</th>
+        </tr>
+      </thead>
+ 
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td><%= room.user_id %></td>
+            <td>
+                <% room.images.each do |image| %>  
+                <%= image_tag image.image_url.url %> 
+                <% end %></td>
+            <td><%= room.name %></td>
+            <td><%= room.introduction %></td>
+            <td><%= room.price %></td>
+            <td><%= room.created_at %></td>
+            <td>
+              <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+ 
+    <p><%= link_to "ルーム新規登録", :new_room %></p>
