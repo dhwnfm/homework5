@@ -11,8 +11,15 @@
   <body>
   <body>
 　<div class="header">
+　    
 　　<a class="header-logo" href="/"><img src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
-　　　<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+    <div class="header-menu">
+      <%= link_to "エリア検索", rooms_path, method: :get %>
+    </div>  
+    <div class="header-menu">
+      <%= link_to "キーワード検索", rooms_path, method: :get %>
+    </div>
+    <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
   <!-- ユーザーがログインしていた時の処理 -->
     <div class="header-user">
      <h4> <%= current_user.name %> </h4>
@@ -37,7 +44,6 @@
     　　<%= link_to "私の予約履歴", reservation_path(current_user.id), method: :get %>   
     </div>　　
   
-    
     <% else %>
   <!-- ユーザーがログインしていなかった時の処理 -->
    <div class="header-login">
@@ -48,7 +54,7 @@
    </div>  
     <% end %>
 　　</div>
-
+ 
     <%= yield %>
  <div class="footer">
    <div class="footer-logo">

@@ -15,7 +15,7 @@
   </div>
  </div>
 </div>
-<%= form_for @reservation do |f| %>
+<%= form_for @reservation, method: :post, url: confirm_rooms_path do |f| %>
  
  <div class="box">
   <div class="box-inner">
@@ -42,7 +42,7 @@
       </table>
   
       <div class="actions">
-          <%= f.submit "予約する"%>
+          <%= f.submit "予約内容確認！"%>
       </div>
       
 <% end %>      
