@@ -1,0 +1,48 @@
+<h1>投稿を検索</h1>
+<%= search_form_for @q, url: search_rooms_path do |f| %>
+ 　<%= f.text_field :name_or_price_or_address_or_introduction_cont, class: "search-form", placeholder: "キーワード検索" %>
+   <%= f.submit "検索", class: "search-btn" %>
+<% end %>
+
+
+
+    <% if flash.notice %>
+      <p class="notice"><%= flash.notice %></p>
+    <% end %>
+
+ <table>
+      <thead>
+        <tr>
+          <th>user</th>
+          <th>ルーム写真</th>
+          <th>ルーム名</th>
+          <th>ルーム紹介</th>
+          <th>料金</th>
+          <th>作成日</th>
+          <th>x</th>
+          <th>予約</th>
+        </tr>
+      </thead>
+ 
+      <tbody>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td><%= room.user_id %></td>
+            <td>
+                <% room.images.each do |image| %>  
+                <%= image_tag image.image_url.url %> 
+                <% end %></td>
+            <td><%= room.name %></td>
+            <td><%= room.introduction %></td>
+            <td><%= room.price %></td>
+            <td><%= room.created_at %></td>
+            <td>
+              <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            </td>
+            <td><%= link_to "予約", new_reservation_path, method: :get %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+     
+

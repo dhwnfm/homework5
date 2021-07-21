@@ -9,6 +9,57 @@
   </head>
 
   <body>
+  <body>
+　<div class="header">
+　    
+　　<a class="header-logo" href="/"><img src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
+    <div class="header-menu">
+      <%= link_to "エリア検索", rooms_path, method: :get %>
+    </div>  
+    <div class="header-menu">
+      <%= link_to "キーワード検索", rooms_path, method: :get %>
+    </div>
+    <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+  <!-- ユーザーがログインしていた時の処理 -->
+    <div class="header-user">
+     <h4> <%= current_user.name %> </h4>
+    </div> 
+    <div class="header-user">
+         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> 
+    </div>
+    
+    <div class="header-menu">
+      <%= link_to "ROOM新規登録", new_room_path, method: :get %>
+    </div>  
+    <div class="header-menu">
+      <%= link_to "ROOM一覧", rooms_path, method: :get %>
+    </div>   
+    <div class="header-menu">
+      <%= link_to "myルーム登録一覧", room_path(current_user.id), method: :get %>
+    </div>
+    <div class="header-menu">
+      <%= link_to "アカウント設定", user_path(current_user.id), method: :get %> <!-- account確認をする -->
+    </div>
+    <div class="header-menu">  
+    　　<%= link_to "私の予約履歴", reservation_path(current_user.id), method: :get %>   
+    </div>　　
+  
+    <% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+   <div class="header-login">
+    <%= link_to "ログイン", new_user_session_path, class: 'post' %>
+   </div>  <!-- ログイン画面に移行する -->
+   <div class="header-login">  
+    <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+   </div>  
+    <% end %>
+　　</div>
+ 
     <%= yield %>
-  </body>
+ <div class="footer">
+   <div class="footer-logo">
+     <h4>2021.6.bongju</h4>
+   </div>
+ </div>    
+ </body>
 </html>

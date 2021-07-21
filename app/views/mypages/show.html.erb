@@ -1,0 +1,31 @@
+<h2>mypage</h2>
+    <% if flash.notice %>
+      <p class="notice"><%= flash.notice %></p>
+    <% end %>
+
+ <table>
+      <thead>
+        <tr>
+          <th>アイコン画像</th>
+          <th>名前</th>
+          <th>自己紹介</th>
+          <th>削除</th>
+          <th>編集</th>
+        </tr>
+      </thead>
+ 
+      <tbody>
+        <% @mypages.each do |mypage| %>
+          <tr>
+            <td><%= image_tag mypage.img.url%></td> 
+            <td><%= mypage.username %></td>
+            <td><%= mypage.introduction %></td>
+            <td>
+              <%= link_to "削除", mypage, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            </td>
+            <td><%= link_to "編集", edit_mypage_path  %> </td>
+          </tr>
+  
+        <% end %>
+      </tbody>
+  </table>

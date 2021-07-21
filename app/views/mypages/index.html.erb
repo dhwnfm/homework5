@@ -1,0 +1,24 @@
+<h2>mypage</h2>
+    <% if flash.notice %>
+      <p class="notice"><%= flash.notice %></p>
+    <% end %>
+
+ <table>
+      <thead>
+        <tr>
+          <th>名前</th>
+          <th>自己紹介</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+ 
+      <tbody>
+          <tr>
+            <td><%= @mypages.username %></td>
+            <td><%= @mypages.introduction %></td>
+            <td>
+              <%= link_to "削除", mypage, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            </td>
+          </tr>
+      </tbody>
+  </table>

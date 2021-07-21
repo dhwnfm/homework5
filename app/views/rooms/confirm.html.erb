@@ -1,0 +1,37 @@
+
+
+ <div class="box">
+  <div class="box-inner">
+        <div class="box-name">
+           <span class="check">確認</span>
+            開始日<br/>
+            <%= @reservation.start_date  %>
+        </div>
+        <div class="box-name">
+           <span class="check">確認</span>
+           終了日<br/>
+           <%= @reservation.end_date  %>
+        </div>
+        <div class="box-name">
+          <span class="check">確認</span>
+            人数<br/>
+           <%= @reservation.people  %>
+        </div>
+
+ 
+<%= form_for @reservation, method: :post, url: confirm_rooms_path(@reservation) do |form| %>
+	<%= form.hidden_field :start_date %>
+	<%= form.hidden_field :end_date %>
+	<%= form.hidden_field :people %>
+	<%= form.submit '入力画面に戻る' %>
+<% end %>
+
+<%= form_for @reservation, method: :post, url: complete_rooms_path(@reservation) do |form| %>
+	<%= form.hidden_field :start_date %>
+	<%= form.hidden_field :end_date %>
+	<%= form.hidden_field :people %>
+	<%= form.submit '送信する' %>
+<% end %>
+
+  </div>
+ </div> 

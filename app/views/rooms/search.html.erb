@@ -1,0 +1,38 @@
+<h1>検索結果</h1>
+<table>
+  <thead>
+    <tr>
+          <th>user</th>
+          <th>ルーム写真</th>
+          <th>ルーム名</th>
+          <th>ルーム紹介</th>
+          <th>料金</th>
+          <th>作成日</th>
+          <th>x</th>
+          <th>予約</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |room| %>
+         <tr>
+            <td><%= room.user_id %></td>
+            <td>
+                <% room.images.each do |image| %>  
+                <%= image_tag image.image_url.url %> 
+                <% end %></td>
+            <td><%= room.name %></td>
+            <td><%= room.introduction %></td>
+            <td><%= room.price %></td>
+            <td><%= room.created_at %></td>
+            <td>
+              <%= link_to "削除", room, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            </td>
+            <td><%= link_to "予約", edit_room_path(room.id), method: :get %></td>
+          </tr>
+        <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Top', user_session %>
+

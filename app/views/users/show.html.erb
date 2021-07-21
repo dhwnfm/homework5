@@ -1,0 +1,16 @@
+<div class="box">
+  <div class="box-inner">
+    <div class="box-title">
+      <h2>アカウント</h2>
+    </div>  
+    
+    <div class="box-data">
+     メールアドレス <%= @user.email %>
+    </div>
+    <div class="box-data">
+     ユーザ名 <%= @user.name %>
+    </div>
+    
+    <%= link_to "プロフィール登録", new_mypage_path, method: :get %>
+    <%= link_to "プロフィール確認", mypage_path(current_user.id), method: :get %> 
+</div>    
